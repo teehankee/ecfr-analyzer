@@ -7,7 +7,7 @@ export default defineConfig({
   define: {
     __API__: JSON.stringify(
       process.env.NODE_ENV === 'production'
-        ? 'https://legendary-halibut-pwwxp7xvwxwf995.github.dev'   // backend URL (step 2)
+        ? 'https://legendary-halibut-pwwxp7xvwxwf995-8000.app.github.dev/'   // backend URL (step 2)
         : '/api'
     )
   }
