@@ -1,21 +1,20 @@
-# Dockerfile  (repo root)
+# ───────────────────────────────────────────────────────────── Dockerfile
+FROM python:3.13-slim
 
-FROM python:3.12-slim
-
-# 0️⃣ create non‑root user so fly’s auto‑stop works happily
-RUN adduser --disabled-password --gecos '' appuser
+# 1) basic housekeeping
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
 WORKDIR /app
-USER appuser
 
-# 1️⃣ copy deps & install
+# 2) install deps
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 2️⃣ copy source
+# 3) copy code and pre‑compute data
 COPY . .
-
-# 3️⃣ bake eCFR data into the image (one‑time fetch)
 RUN python fetch_data.py && python analytics.py
 
+# 4) expose port and start server
 EXPOSE 8000
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+# ─────────────────────────────────────────────────────────────
