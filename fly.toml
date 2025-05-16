@@ -10,5 +10,6 @@ app = "ecfr-api"
 
   [[services.ports]]
     port = 80
+
   [[services.ports]]
     port = 443
