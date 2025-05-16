@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import React from "react";
 export default function SectionSearch() {
   const [q, setQ] = useState("");
   const [page, setPage] = useState(0);
