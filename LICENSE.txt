@@ -1,0 +1,3 @@
+Copyright (c) Dylan Teehankee 2025. All rights reserved.
+
+This codebase is furnished solely for the purpose of evaluating Dylan Teehankee as a candidate for employment or contract work.  No part of this repository may be used, reproduced, modified, distributed, or deployed—whether privately or publicly—without the prior written consent of the author.  Any other use is expressly prohibited.
