@@ -13,6 +13,7 @@ export default function App() {
 
   async function fetchMetrics() {
     const m = await fetch("/api/metrics").then((r) => r.json());
+    console.log("Metrics:", m);
     setGeneratedTs(m.generated);
   }
 
