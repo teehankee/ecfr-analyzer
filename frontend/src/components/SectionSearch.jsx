@@ -5,16 +5,24 @@ export default function SectionSearch() {
   const [page, setPage] = useState(0);
   const [resp, setResp] = useState(null);
   const pageSize = 10;
+  const BASE_URL = "https://legendary-halibut-pwwxp7xvwxwf995-8000.app.github.dev";
 
   const runSearch = async (pageIndex = 0) => {
     if (q.trim().length < 3) return;
+  
     const params = new URLSearchParams({
       q,
       offset: pageIndex * pageSize,
       limit: pageSize,
     });
-    const r = await fetch(`/api/search?${params.toString()}`);
+  
+    const searchUrl = `${BASE_URL}/api/search?${params.toString()}`;
+    console.log("🔍 Searching at:", searchUrl);
+  
+    const r = await fetch(searchUrl);
+    if (!r.ok) throw new Error(`Search failed (${r.status})`);
     const data = await r.json();
+  
     setPage(pageIndex);
     setResp(data);
   };

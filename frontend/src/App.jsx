@@ -12,10 +12,18 @@ export default function App() {
   }, []);
 
   async function fetchMetrics() {
-    const m = await fetch("/api/metrics").then((r) => r.json());
-    console.log("Metrics:", m);
+    const baseUrl   = "https://legendary-halibut-pwwxp7xvwxwf995-8000.app.github.dev";
+    const endpoint  = "/api/metrics";
+    const fullUrl   = `${baseUrl}${endpoint}`;
+  
+    console.log("📡 Fetching metrics from:", fullUrl);
+    const m = await fetch(fullUrl).then(r => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json();
+    });
     setGeneratedTs(m.generated);
   }
+  
 
   return (
     <div className="p-8 max-w-4xl mx-auto space-y-8">
